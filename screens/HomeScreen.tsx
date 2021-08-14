@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { Card,Button,Text,Input } from 'react-native-elements';
-import { boolean } from 'yargs';
 
 export default function HomeScreen(){
     const [tiingoToken, setTiingoToken] = useState('');

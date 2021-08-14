@@ -7,6 +7,11 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { AppContextInterface,AppContextProvider } from './context/AppContext';
+
+const tbAppContext: AppContextInterface = {
+  token: ''
+}
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
@@ -16,10 +21,12 @@ export default function App() {
     return null;
   } else {
     return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
+      <AppContextProvider value={tbAppContext}>
+        <SafeAreaProvider>
+          <Navigation colorScheme={colorScheme} />
+          <StatusBar />
+        </SafeAreaProvider>
+      </AppContextProvider>
     );
   }
 }

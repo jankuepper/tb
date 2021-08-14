@@ -1,11 +1,15 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import { useState } from 'react';
 import { View } from 'react-native';
 import { Card,Button,Text,Input } from 'react-native-elements';
+import { context } from '../context/AppContext';
 
-export default function HomeScreen(){
+
+export default function HomeScreen(props: any){
     const [tiingoToken, setTiingoToken] = useState('');
     const [buttonChanges, setButtonChanges] = useState({color:'#6bc9e6', text:'Submit!'});
+    const test = useContext(context);
     return(
         <View>
             <Card>
@@ -34,6 +38,7 @@ export default function HomeScreen(){
                     }}
                 />
             </Card>
+            <Text>{test?.token}</Text>
         </View>
     )
 }

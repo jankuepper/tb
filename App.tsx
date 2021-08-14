@@ -7,10 +7,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
-import { AppContextInterface,AppContextProvider } from './context/AppContext';
+import { AppContextInterface, context } from './context/AppContext';
 
 const tbAppContext: AppContextInterface = {
-  token: ''
+  token: 'test123'
 }
 
 export default function App() {
@@ -21,12 +21,12 @@ export default function App() {
     return null;
   } else {
     return (
-      <AppContextProvider value={tbAppContext}>
-        <SafeAreaProvider>
+      <SafeAreaProvider>
+        <context.Provider value={tbAppContext}>
           <Navigation colorScheme={colorScheme} />
           <StatusBar />
-        </SafeAreaProvider>
-      </AppContextProvider>
+        </context.Provider>
+      </SafeAreaProvider>
     );
   }
 }

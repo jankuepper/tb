@@ -16,7 +16,8 @@ export default function App() {
   const [token, setTokenState] = useState('');
   const tbAppContext: AppContextInterface = {
     token: token,
-    setToken: setTokenIntern
+    setToken: setTokenIntern,
+    color:{green:'#7ef2c7',blue:'#6bc9e6',purple:'#e94cdd'}
   }
 
   if (!isLoadingComplete) {

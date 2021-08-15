@@ -6,10 +6,12 @@ import { Card,Button,Text,Input } from 'react-native-elements';
 import { context } from '../context/AppContext';
 
 
+
 export default function HomeScreen(props: any){
+    const cxtx = useContext(context);
     const [tiingoToken, setTiingoToken] = useState('');
-    const [buttonChanges, setButtonChanges] = useState({color:'#6bc9e6', text:'Submit!'});
-    const test = useContext(context);
+    const [buttonChanges, setButtonChanges] = useState({color:cxtx?.color.blue, text:'Submit!'});
+    
     return(
         <View>
             <Card>
@@ -30,16 +32,14 @@ export default function HomeScreen(props: any){
                         .then(res=>res.json()).then((data)=>{
                             console.log(data)
                             if(data.message==='You successfully sent a request'){
-                                setButtonChanges({color:'#7ef2c7', text:'Confirmed!'});
-                                test?.setToken(tiingoToken);
+                                setButtonChanges({color:cxtx?.color.green, text:'Confirmed!'});
                             }else{
-                                setButtonChanges({color:'#e94cdd', text:'Denied!'});
+                                setButtonChanges({color:cxtx?.color.purple, text:'Denied!'});
                             }
                         });
                     }}
                 />
             </Card>
-            <Text>{test?.token}</Text>
         </View>
     )
 }

@@ -33,7 +33,6 @@ export default function HomeScreen(props: any){
                             }
                         })
                         .then(res=>res.json()).then((data)=>{
-                            console.log(data)
                             if(data.message==='You successfully sent a request'){
                                 setButtonChanges({color:cxtx?.color.green, text:'Confirmed!'});
                             }else{

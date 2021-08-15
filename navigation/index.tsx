@@ -14,6 +14,8 @@ import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import HomeScreen from '../screens/HomeScreen';
 import { StyleSheet } from 'react-native';
+import { context } from '../context/AppContext';
+import { useContext } from 'react';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -30,16 +32,11 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const cxtx = useContext(context);
   return (
-    <Stack.Navigator screenOptions={{headerStyle: styles.header}}>
+    <Stack.Navigator screenOptions={{headerStyle: {backgroundColor:cxtx?.color.blue}}}>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  header:{
-    backgroundColor: '#7ef2c7'
-  }
-})

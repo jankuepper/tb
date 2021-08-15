@@ -17,7 +17,8 @@ export default function App() {
   const tbAppContext: AppContextInterface = {
     token: token,
     setToken: setTokenIntern,
-    color:{green:'#7ef2c7',blue:'#6bc9e6',purple:'#e94cdd'}
+    color:{green:'#7ef2c7',blue:'#6bc9e6',purple:'#e94cdd'},
+    tiingoApi:'https://api.tiingo.com'
   }
 
   if (!isLoadingComplete) {

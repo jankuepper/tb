@@ -26,8 +26,11 @@ export default function HomeScreen(props: any){
                     title={buttonChanges.text}
                     buttonStyle={{backgroundColor: buttonChanges.color}}
                     onPress={()=>{
-                        fetch('https://api.tiingo.com/api/test?token='+tiingoToken,{
-                            headers: {'Content-Type': 'application/json'}
+                        fetch(`${cxtx?.tiingoApi}/api/test`,{
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Token ${tiingoToken}`
+                            }
                         })
                         .then(res=>res.json()).then((data)=>{
                             console.log(data)

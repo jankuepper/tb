@@ -8,14 +8,16 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import { AppContextInterface, context } from './context/AppContext';
-
-const tbAppContext: AppContextInterface = {
-  token: 'test123'
-}
+import { useState } from 'react';
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  const [token, setTokenState] = useState('');
+  const tbAppContext: AppContextInterface = {
+    token: token,
+    setToken: setTokenIntern
+  }
 
   if (!isLoadingComplete) {
     return null;
@@ -29,4 +31,8 @@ export default function App() {
       </SafeAreaProvider>
     );
   }
+  function setTokenIntern(token:string):void{
+    setTokenState(token);
+  }
 }
+

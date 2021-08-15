@@ -31,6 +31,7 @@ export default function HomeScreen(props: any){
                             console.log(data)
                             if(data.message==='You successfully sent a request'){
                                 setButtonChanges({color:'#7ef2c7', text:'Confirmed!'});
+                                test?.setToken(tiingoToken);
                             }else{
                                 setButtonChanges({color:'#e94cdd', text:'Denied!'});
                             }

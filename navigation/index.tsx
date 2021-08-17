@@ -13,7 +13,6 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import HomeScreen from '../screens/HomeScreen';
-import { StyleSheet } from 'react-native';
 import { context } from '../context/AppContext';
 import { useContext } from 'react';
 
@@ -33,8 +32,9 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   const cxtx = useContext(context);
+  //TODO: Enter custom Button which enlarges Header and makes Searchbar visible
   return (
-    <Stack.Navigator screenOptions={{headerStyle: {backgroundColor:cxtx?.color.blue}}}>
+    <Stack.Navigator screenOptions={{headerStyle: {backgroundColor:cxtx?.color.blue}, headerTintColor:'#fff', headerTitleStyle:{fontWeight:'bold', alignSelf:'center'}}}> 
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>

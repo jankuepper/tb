@@ -1,47 +1,25 @@
 import * as React from 'react';
 import { useContext } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { View } from 'react-native';
-import { Card,Button,Text,Input } from 'react-native-elements';
 import { context } from '../context/AppContext';
+import TokenCard from '../components/TokenCard';
+import TickerSearchBar from '../components/TickerSearchBar';
 
-
-
-export default function HomeScreen(props: any){
+export default function HomeScreen(){
     const cxtx = useContext(context);
-    const [tiingoToken, setTiingoToken] = useState('');
-    const [buttonChanges, setButtonChanges] = useState({color:cxtx?.color.blue, text:'Submit!'});
-    
+    const [toRender, setToRender] = useState<JSX.Element|null>(null); //TODO change null to something more interesting like newsfeed...
+    useEffect(()=>{
+        if(cxtx?.token===''){
+            setToRender(()=>{return <TokenCard/>});
+        }else{
+            setToRender(()=>{return <TickerSearchBar />});
+        }
+    },[cxtx?.token])
     return(
         <View>
-            <Card>
-                <Card.Title>Tiingo API Token</Card.Title>
-                <Card.Divider/>
-                <Text>Please insert your Tiingo API Token here to use the underlying API. Disclaimer: This App is in no way associated with Tiingo and their products!</Text>
-                <Input
-                    placeholder='Tiingo API Token'
-                    onChangeText={value=>setTiingoToken(value)}
-                />
-                <Button 
-                    title={buttonChanges.text}
-                    buttonStyle={{backgroundColor: buttonChanges.color}}
-                    onPress={()=>{
-                        fetch(`${cxtx?.tiingoApi}/api/test`,{
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Token ${tiingoToken}`
-                            }
-                        })
-                        .then(res=>res.json()).then((data)=>{
-                            if(data.message==='You successfully sent a request'){
-                                setButtonChanges({color:cxtx?.color.green, text:'Confirmed!'});
-                            }else{
-                                setButtonChanges({color:cxtx?.color.purple, text:'Denied!'});
-                            }
-                        });
-                    }}
-                />
-            </Card>
+            {toRender}
         </View>
     )
 }

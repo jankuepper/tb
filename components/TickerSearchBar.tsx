@@ -13,7 +13,7 @@ export default function TickerSearchBar(props: any){
             value={userInput}
             platform='android'
             onSubmitEditing={()=>{
-                cxtx?.setCurrentTicker(userInput);
+                cxtx?.setCurrentTicker(userInput.toLowerCase());
             }}
         />
     )

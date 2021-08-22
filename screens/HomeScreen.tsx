@@ -6,10 +6,12 @@ import { View } from 'react-native';
 import { context } from '../context/AppContext';
 import TokenCard from '../components/TokenCard';
 import TickerSearchBar from '../components/TickerSearchBar';
+import TickerCardWrapper from '../components/TickerCardWrapper';
 
 export default function HomeScreen(){
     const cxtx = useContext(context);
-    const [toRender, setToRender] = useState<JSX.Element|null>(null); //TODO change null to something more interesting like newsfeed...
+    const [toRender, setToRender] = useState<JSX.Element|null>(null);
+    const [tickerCards, setTickerCards] = useState<JSX.Element|null>(null);
     useEffect(()=>{
         if(cxtx?.token===''){
             setToRender(()=>{return <TokenCard/>});
@@ -18,11 +20,16 @@ export default function HomeScreen(){
         }
     },[cxtx?.token])
     useEffect(()=>{
-        //TODO
+        if(cxtx?.currentTicker!==''){
+            setTickerCards(()=>{return <TickerCardWrapper title='End of Day Information' ticker={cxtx?.currentTicker} />});
+        }else{
+            setTickerCards(null);
+        }
     },[cxtx?.currentTicker])
     return(
         <View>
             {toRender}
+            {tickerCards}
         </View>
     )
 }

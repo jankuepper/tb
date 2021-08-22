@@ -16,7 +16,7 @@ export default function App() {
   const [token, setTokenState] = useState('');
   const [tickerIntern, setTickerIntern] = useState('');
   const tbAppContext: AppContextInterface = {
-    token: token,
+    token: token, //should probs be safed in the Expo SecureStore
     setToken: setTokenIntern,
     color:{green:'#7ef2c7',blue:'#6bc9e6',purple:'#e94cdd'},
     tiingoApi:'https://api.tiingo.com',

@@ -2,11 +2,13 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { View } from 'react-native';
+import { View,ScrollView } from 'react-native';
+import { Card,Button,Text,Input,Tile } from 'react-native-elements';
 import { context } from '../context/AppContext';
 import TokenCard from '../components/TokenCard';
 import TickerSearchBar from '../components/TickerSearchBar';
 import TickerCardWrapper from '../components/TickerCardWrapper';
+import MetaDataCard from '../components/MetaDataCard';
 
 export default function HomeScreen(){
     const cxtx = useContext(context);
@@ -19,17 +21,18 @@ export default function HomeScreen(){
             setToRender(()=>{return <TickerSearchBar />});
         }
     },[cxtx?.token])
+    //Todo make a Grid Element that looks like the one in Spotify to change to different Detail Screens
     useEffect(()=>{
         if(cxtx?.currentTicker!==''){
-            setTickerCards(()=>{return <TickerCardWrapper title='End of Day Information' ticker={cxtx?.currentTicker} />});
+            setTickerCards(()=>{return <View><MetaDataCard /></View>});
         }else{
             setTickerCards(null);
         }
     },[cxtx?.currentTicker])
     return(
-        <View>
+        <ScrollView>
             {toRender}
             {tickerCards}
-        </View>
+        </ScrollView>
     )
 }

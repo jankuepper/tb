@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { SearchBar } from 'react-native-elements';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { context } from '../context/AppContext';
 
 export default function TickerSearchBar(props: any){
     const [userInput, setUserInput] = useState('');
+    const cxtx = useContext(context);
     return(
         <SearchBar 
             placeholder="Search for a ticker"
@@ -11,7 +13,7 @@ export default function TickerSearchBar(props: any){
             value={userInput}
             platform='android'
             onSubmitEditing={()=>{
-                console.log('test: '+userInput)
+                cxtx?.setCurrentTicker(userInput);
             }}
         />
     )

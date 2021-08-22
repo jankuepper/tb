@@ -14,11 +14,14 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [token, setTokenState] = useState('');
+  const [tickerIntern, setTickerIntern] = useState('');
   const tbAppContext: AppContextInterface = {
     token: token,
     setToken: setTokenIntern,
     color:{green:'#7ef2c7',blue:'#6bc9e6',purple:'#e94cdd'},
-    tiingoApi:'https://api.tiingo.com'
+    tiingoApi:'https://api.tiingo.com',
+    currentTicker:tickerIntern,
+    setCurrentTicker: setCurrentTickerIntern
   }
 
   if (!isLoadingComplete) {
@@ -35,6 +38,9 @@ export default function App() {
   }
   function setTokenIntern(token:string):void{
     setTokenState(token);
+  }
+  function setCurrentTickerIntern(ticker:string):void{
+    setTickerIntern(ticker);
   }
 }
 

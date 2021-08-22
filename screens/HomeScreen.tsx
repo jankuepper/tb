@@ -17,6 +17,9 @@ export default function HomeScreen(){
             setToRender(()=>{return <TickerSearchBar />});
         }
     },[cxtx?.token])
+    useEffect(()=>{
+        //TODO
+    },[cxtx?.currentTicker])
     return(
         <View>
             {toRender}

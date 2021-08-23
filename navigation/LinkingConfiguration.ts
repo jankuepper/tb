@@ -10,21 +10,9 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Home: {
-        screens: {
-          TabOne: {
-            screens: {
-              TabOneScreen: 'one',
-            },
-          },
-          TabTwo: {
-            screens: {
-              TabTwoScreen: 'two',
-            },
-          },
-        },
-      },
+      Home: 'home',
       NotFound: '*',
+      Price: 'price',
     },
   },
 };

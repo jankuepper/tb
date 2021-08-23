@@ -22,9 +22,13 @@ export default function HomeScreen(){
         }
     },[cxtx?.token])
     //Todo make a Grid Element that looks like the one in Spotify to change to different Detail Screens
+    //also handle the metadata lookup here to check if its there or render not found!
     useEffect(()=>{
         if(cxtx?.currentTicker!==''){
-            setTickerCards(()=>{return <View><MetaDataCard /></View>});
+            setTickerCards(()=>{return <View>
+                    <MetaDataCard />
+                    <TickerCardWrapper title='Price Information' />
+                </View>});
         }else{
             setTickerCards(null);
         }

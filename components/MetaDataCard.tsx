@@ -8,7 +8,6 @@ import { ActivityIndicator,View,Text } from 'react-native';
 
 export default function MetaDataCard(){
     const cxtx = useContext(context);
-    const [metadata, setMetaData] = useState({ticker:'', name:'', description:'',startDate:'', exchangeCode:'',endDate:''});
     const [render, setRender] = useState<JSX.Element>(<ActivityIndicator color={cxtx?.color.blue}/>);
     useEffect(()=>{
         fetch(`https://api.tiingo.com/tiingo/daily/${cxtx?.currentTicker}`,{

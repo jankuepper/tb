@@ -6,6 +6,7 @@
 export type RootStackParamList = {
   Home: undefined;
   NotFound: undefined;
+  Price: JSX.Element;
 };
 
 export type BottomTabParamList = {

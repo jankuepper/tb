@@ -23,6 +23,7 @@ export default function HomeScreen(){
     },[cxtx?.token])
     //Todo make a Grid Element that looks like the one in Spotify to change to different Detail Screens
     //also handle the metadata lookup here to check if its there or render not found!
+    //show global news when no ticker selectd
     useEffect(()=>{
         if(cxtx?.currentTicker!==''){
             setTickerCards(()=>{return <View>
